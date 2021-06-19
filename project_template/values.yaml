@@ -1,0 +1,12 @@
+# Dupler conf file
+
+# Dupler special element is used for configuration of Dupler itself.
+# Uncomment below to enable configuration.
+# Dupler:
+#   time:
+#     format:
+#       default: "%Y-%m-%d %H:%M"
+
+sample:
+  name: Dupler
+  records: 5

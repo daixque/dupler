@@ -1,8 +1,14 @@
 # frozen_string_literal: true
+require "bundler"
+Bundler.require
 
-require_relative "dupler/version"
+require "dupler/version"
+require "dupler/cli"
 
 module Dupler
-  class Error < StandardError; end
-  # Your code goes here...
+  class DuplerException < StandardError; end
+  
+  def self.home
+    @dupler_home = File.join File.dirname(__FILE__), "../"
+  end
 end
