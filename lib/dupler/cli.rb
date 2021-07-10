@@ -1,12 +1,13 @@
-# -*- encoding: utf-8 -*-
+# frozen_string_literal: true
 
-require 'thor'
-require 'json'
+require "thor"
+require "json"
 require "dupler/core"
 
 module Dupler
+  # CLI class for dupler command based Thor
   class Cli < Thor
-    @@defalut_conf_name = "./values.yaml"
+    DEFAULT_CONF_PATH = "./values.yaml"
 
     default_command :build
 
@@ -18,35 +19,42 @@ module Dupler
 
     desc :build, "build documents."
     option "conf", aliases: "c", type: :string
-    def build(output_dir = "./output", *template_files)
-      if template_files.empty?
-        templates_dir = './templates'
-        if !Dir.exists?(templates_dir)
-          raise DuplerException.new("No such template directory: #{templates_dir}")
-        end
+    def build(output_dir = "./output", *template_path)
+      extracted_template_files = extract_template_files(template_path)
 
-        Dir.glob(File.join(templates_dir, '*')) do |f|
-          template_files << f
-        end
-      end
-      
+      values_file_path = options["conf"] || DEFAULT_CONF_PATH
+      raise DuplerException, "No such conf file: #{values_file_path}" unless File.exist? values_file_path
+
+      core = Dupler::Core.new
+      core.build(values_file_path, output_dir, extracted_template_files)
+    end
+
+    private
+
+    def extract_template_files(template_path)
+      template_files = find_template_files(template_path)
+
       extract_template_files = []
       template_files.each do |f|
         if File.directory?(f)
-          files = Dir.glob(File.join(f, '*'))
-          extract_template_files.concat files
+          extract_template_files.concat Dir.glob(File.join(f, "*"))
         else
           extract_template_files << f
         end
       end
+      extract_template_files
+    end
 
-      values_file_path = options['conf'] || @@defalut_conf_name
-      if !File.exists? values_file_path
-        raise DuplerException.new("No such conf file: #{values_file_path}")
+    def find_template_files(template_files)
+      if template_files.empty?
+        templates_dir = "./templates"
+        raise DuplerException, "No such template directory: #{templates_dir}" unless Dir.exist?(templates_dir)
+
+        Dir.glob(File.join(templates_dir, "*")) do |f|
+          template_files << f
+        end
       end
-
-      core = Dupler::Core.new
-      core.build(values_file_path, output_dir, extract_template_files)
+      template_files
     end
   end
 end
