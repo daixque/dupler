@@ -19,14 +19,24 @@ module Dupler
 
     desc :build, "build documents."
     option "conf", aliases: "c", type: :string
+    option "version", aliases: "v", type: :boolean
     def build(output_dir = "./output", *template_path)
+      if options["version"]
+        puts "dupler #{Dupler::VERSION}"
+        return
+      end
+
       extracted_template_files = extract_template_files(template_path)
 
       values_file_path = options["conf"] || DEFAULT_CONF_PATH
       raise DuplerException, "No such conf file: #{values_file_path}" unless File.exist? values_file_path
 
       core = Dupler::Core.new
-      core.build(values_file_path, output_dir, extracted_template_files)
+      begin
+        core.build(values_file_path, output_dir, extracted_template_files)
+      rescue Errno::EACCES => e
+        raise DuplerException.new(e)
+      end
     end
 
     private

@@ -44,8 +44,12 @@ module Dupler
     end
 
     def apply_template(template_path, config)
-      template = Tilt.new(template_path)
-      template.render(self, config)
+      begin
+        template = Tilt.new(template_path)
+        template.render(self, config)
+      rescue Exception => e
+        raise DuplerException.new("Template rendering error: [#{template_path}] #{e.message}")
+      end
     end
 
     def output_file(filepath, content)
