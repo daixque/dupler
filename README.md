@@ -1,6 +1,6 @@
 # Dupler
 
-Easy-to-use template engine driver.
+Easy-to-use template engine driver CLI.
 
 ## Overview
 

@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["daixque"]
   spec.email         = ["daixque@gmail.com"]
 
-  spec.summary       = "Easy-to-use template engine driver"
-  spec.description   = "Dupler provides you a simple command line interface to document "\
-                       "generation environment using template engine especially in ERB format."
+  spec.summary       = "Easy-to-use template engine driver CLI."
+  spec.description   = "Dupler is a simple command line interface to generate any kind of text "\
+                       "files by using template engine especially in ERB format."
   spec.homepage      = "https://github.com/daixque/dupler"
   spec.license       = "MIT"
   spec.required_ruby_version = ">= 2.5.0"
