@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require "bundler"
-Bundler.require
-
 require "dupler/version"
 require "dupler/cli"
 
