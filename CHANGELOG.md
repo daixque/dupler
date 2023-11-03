@@ -1,5 +1,8 @@
 ## [Unreleased]
 
+## [0.2.1] - 2022-11-03
+
+ - Lock the library versions
 
 ## [0.2.0] - 2022-11-03
 
