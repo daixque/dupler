@@ -4,15 +4,15 @@ Easy-to-use template engine driver.
 
 ## Overview
 
-Dupler provides you a simple command line interface to document generation environment using template engine especially in ERB format.
+Dupler is a simple command line interface to generate any kind of text files by using template engine especially in [ERB](https://github.com/ruby/erb) format.
 
 Typical use cases are:
 
  - generate configuration files for some different environments
  - generate test data
 
-Technically dupler is just a cli wrapper of `Tilt` template engine.
-And Dupler supports ActiveSupport by default in template.
+Technically dupler is just a cli wrapper of [Tilt](https://github.com/rtomayko/tilt) template engine.
+And Dupler supports [ActiveSupport](https://github.com/rails/rails/tree/main/activesupport) by default in template.
 
 ## Installation
 
@@ -43,7 +43,7 @@ Or you can specify like below
 
 ## Examples
 
-How to write template and values.yaml? Here is the example of Dupler config file (values.yaml) and template in ERB format.
+How to write template and values.yaml? Here ar examples of Dupler config files (values.yaml) and templates in ERB format.
 
 ### values.yaml
 
