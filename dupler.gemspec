@@ -33,11 +33,11 @@ Gem::Specification.new do |spec|
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"
-  spec.add_dependency "activesupport"
-  spec.add_dependency "hashie"
-  spec.add_dependency "thor"
-  spec.add_dependency "tilt"
-  spec.add_dependency "yaml"
+  spec.add_dependency "activesupport", ">= 7.1.1"
+  spec.add_dependency "hashie", ">= 5.0.0"
+  spec.add_dependency "thor", ">= 1.3.0"
+  spec.add_dependency "tilt", ">= 2.3.0"
+  spec.add_dependency "yaml", ">= 0.2.1"
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html
